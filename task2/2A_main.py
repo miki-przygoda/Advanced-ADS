@@ -5,16 +5,10 @@ for root, dirs, files in os.walk(clrs_dir):
     if root not in sys.path:
         sys.path.append(root)
 
-
 # === Step 2: Import libraries ===
 # These imports will work because we added all subdirectories
 from clrsPython.UtilityFunctions.adjacency_list_graph import AdjacencyListGraph
 from clrsPython.Chapter22.dijkstra import dijkstra
-
-#importing the libraries
-from UtilityFunctions.adjacency_list_graph import AdjacencyListGraph
-from Chapter22.dijkstra import dijkstra
-
 
 #importing the csv file
 csv_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Weighted_Test_Data.csv")
