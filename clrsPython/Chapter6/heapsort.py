@@ -30,7 +30,7 @@
 #                                                                       #
 #########################################################################
 
-from max_heap import MaxHeap
+from clrsPython.Chapter6.max_heap import MaxHeap
 
 def heapsort(A):
 	"""Sort a list or numpy array in place using heaps."""

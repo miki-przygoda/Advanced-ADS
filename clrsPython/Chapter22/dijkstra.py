@@ -30,8 +30,8 @@
 #                                                                       #
 #########################################################################
 
-from single_source_shortest_paths import initialize_single_source, relax
-from min_heap_priority_queue import MinHeapPriorityQueue
+from clrsPython.Chapter22.single_source_shortest_paths import initialize_single_source, relax
+from clrsPython.Chapter6.min_heap_priority_queue import MinHeapPriorityQueue
 
 
 def dijkstra(G, s):
@@ -73,9 +73,9 @@ def dijkstra(G, s):
 # Testing
 if __name__ == "__main__":
 
-	from adjacency_list_graph import AdjacencyListGraph
-	from bellman_ford import bellman_ford
-	from generate_random_graph import generate_random_graph
+	from clrsPython.UtilityFunctions.adjacency_list_graph import AdjacencyListGraph
+	from clrsPython.Chapter22.bellman_ford import bellman_ford
+	from clrsPython.UtilityFunctions.generate_random_graph import generate_random_graph
 
 	# Textbook example. 
 	vertices = ['s', 't', 'x', 'y', 'z']

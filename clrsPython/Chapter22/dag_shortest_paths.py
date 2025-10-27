@@ -30,8 +30,8 @@
 #                                                                       #
 #########################################################################
 
-from single_source_shortest_paths import initialize_single_source, relax
-from topological_sort import topological_sort
+from clrsPython.Chapter22.single_source_shortest_paths import initialize_single_source, relax
+from clrsPython.Chapter20.topological_sort import topological_sort
 
 
 def dag_shortest_paths(G, s):
