@@ -30,7 +30,7 @@
 #                                                                       #
 #########################################################################
 
-from heap_priority_queue import HeapPriorityQueue
+from clrsPython.Chapter6.heap_priority_queue import HeapPriorityQueue
 
 
 class MinHeapPriorityQueue(HeapPriorityQueue):

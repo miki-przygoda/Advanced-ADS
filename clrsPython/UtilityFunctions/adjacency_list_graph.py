@@ -30,8 +30,8 @@
 #                                                                       #
 #########################################################################
 
-from dll_sentinel import DLLSentinel
-from adjacency_matrix_graph import AdjacencyMatrixGraph
+from clrsPython.Chapter10.dll_sentinel import DLLSentinel
+from clrsPython.UtilityFunctions.adjacency_matrix_graph import AdjacencyMatrixGraph
 
 
 class Edge:
