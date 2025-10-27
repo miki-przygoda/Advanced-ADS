@@ -1,3 +1,8 @@
+#Task 2A
+#Jeet Nadiapara
+#20/10/25-27/10/25
+
+#Importing libraries
 import sys, os, csv
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 clrs_dir = os.path.join(base_dir, "clrsPython")
@@ -5,30 +10,26 @@ for root, dirs, files in os.walk(clrs_dir):
     if root not in sys.path:
         sys.path.append(root)
 
-# === Step 2: Import libraries ===
-# These imports will work because we added all subdirectories
 from clrsPython.UtilityFunctions.adjacency_list_graph import AdjacencyListGraph
 from clrsPython.Chapter22.dijkstra import dijkstra
 
-#importing the csv file
 csv_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Weighted_Test_Data.csv")
 
 edges = []
 stations = set()
 
+#Collecting data from csv file
 with open(csv_file, 'r', newline='', encoding='utf-8') as f:
     reader = csv.reader(f)
     for row in reader:
-        # Expected columns: LineName, Station1, Station2, Weight
+        #Expected column format- LineName, Station1, Station2, Time
         if len(row) < 4:
             continue
         line, s1, s2, weight = [r.strip() for r in row[:4]]
-
         if s1:
             stations.add(s1)
         if s2:
             stations.add(s2)
-
         try:
             weight = float(weight)
             edges.append((s1, s2, weight))
@@ -53,7 +54,7 @@ for u, v, w in edges:
         except RuntimeError:
             pass
 
-#applying the dikstra algorithm
+#Stations to search
 source = 'LineOne_One'
 target = 'LineThree_Five'
 
