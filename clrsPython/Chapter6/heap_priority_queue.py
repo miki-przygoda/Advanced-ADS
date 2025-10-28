@@ -32,7 +32,7 @@
 
 """Base class for MaxHeapPriorityQueue and MinHeapPriorityQueue."""
 
-from heap import Heap
+from clrsPython.Chapter6.heap import Heap
 
 
 class HeapPriorityQueue:

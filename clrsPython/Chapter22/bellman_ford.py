@@ -30,7 +30,7 @@
 #                                                                       #
 #########################################################################
 
-from single_source_shortest_paths import initialize_single_source, relax
+from clrsPython.Chapter22.single_source_shortest_paths import initialize_single_source, relax
 
 
 def bellman_ford(G, s):
