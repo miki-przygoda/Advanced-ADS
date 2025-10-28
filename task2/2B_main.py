@@ -13,7 +13,7 @@ for root, dirs, files in os.walk(clrs_dir):
 from clrsPython.UtilityFunctions.adjacency_list_graph import AdjacencyListGraph
 from clrsPython.Chapter22.dijkstra import dijkstra
 
-csv_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..\data\\London_Underground_data.csv")
+csv_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), r"..\data\London_Underground_data.csv")
 
 edges = []
 stations = set()
@@ -55,12 +55,18 @@ for u, v, w in edges:
             pass
 
 #Stations to search
-source = 'Tottenham Hale'
-target = 'Wimbledon Park'
-
-if source not in vertex_to_index or target not in vertex_to_index:
-    print(f"Error: Either {source} or {target} is missing in the CSV data.")
-    sys.exit(1)
+loop=True
+while loop:
+    source = str(input("Please enter starting station name: "))
+    target = str(input("Please enter ending station name: "))
+    if source not in vertex_to_index and target not in vertex_to_index:
+        print(f"Error: {source} and {target} are not in the data.\n")
+    elif source not in vertex_to_index:
+        print(f"Error: {source} is not in the data.\n")
+    elif target not in vertex_to_index:
+        print(f"Error: {target} is not in the data.\n")
+    else:
+        loop=False
 
 source_idx = vertex_to_index[source]
 target_idx = vertex_to_index[target]
@@ -82,7 +88,7 @@ def get_path(parent, target_idx, index_to_vertex):
 
 path = get_path(parent, target_idx, index_to_vertex)
 
-#  Task 2A:Your shotest route will be of ===
-print("=== Task 2A: Journey Planner ===\n")
+#  Task 2B:Your shotest route will be of ===
+print("=== Task 2B: Journey Planner ===\n")
 print(f"Shortest path from {source} to {target}: {' → '.join(path)}")
 print(f"Total travel time: {dist[target_idx]} minutes")
