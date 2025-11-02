@@ -58,7 +58,7 @@ def load_tube_data():
             if s1 != "" and s2 != "":
                 stations.append(s1)
                 stations.append(s2)
-                edges.add((s1, s2))  
+                edges.add((s1, s2))
 
     stations = sorted(set(stations))
     name_to_id = {name: i for i, name in enumerate(stations)}
