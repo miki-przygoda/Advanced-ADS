@@ -46,7 +46,7 @@ def load_tube_data():
     csv_path = os.path.join(ROOT, "data", "London_Underground_data.csv")
 
     stations = []
-    edges = set()   # ✅ set avoids duplicate connections
+    edges = set()
 
     with open(csv_path, "r", encoding="utf-8") as f:
         read = csv.reader(f)
@@ -58,7 +58,7 @@ def load_tube_data():
             if s1 != "" and s2 != "":
                 stations.append(s1)
                 stations.append(s2)
-                edges.add((s1, s2))   # ✅ unique edge only
+                edges.add((s1, s2))  
 
     stations = sorted(set(stations))
     name_to_id = {name: i for i, name in enumerate(stations)}
