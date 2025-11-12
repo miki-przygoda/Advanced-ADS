@@ -37,7 +37,7 @@ with open(csv_file, 'r', newline='', encoding='utf-8') as f:
             pass
 
 #buid graph
-vertex_to_index = {v: i for i, v in enumerate(sorted(stations))}
+vertex_to_index = {v: i for i, v in enumerate(stations)}
 index_to_vertex = {i: v for v, i in vertex_to_index.items()}
 
 G = AdjacencyListGraph(len(stations), weighted=True)
@@ -48,15 +48,14 @@ for u, v, w in edges:
     v_idx = vertex_to_index[v]
     edge_key = frozenset([u_idx, v_idx])
     if edge_key not in added_edges:
-        try:
-            G.insert_edge(u_idx, v_idx, w)
-            added_edges.add(edge_key)
-        except RuntimeError:
-            pass
+        G.insert_edge(u_idx, v_idx, w)
+        G.insert_edge(v_idx, u_idx, w)
+        added_edges.add(edge_key)
 
 #Stations to search
 source = 'LineOne_One'
 target = 'LineThree_Five'
+
 
 if source not in vertex_to_index or target not in vertex_to_index:
     print(f"Error: Either {source} or {target} is missing in the CSV data.")
