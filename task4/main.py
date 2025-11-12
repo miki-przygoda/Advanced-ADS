@@ -1,14 +1,15 @@
 """
 Task 4a — Core Backbone Network (Minimum Spanning Tree)
--------------------------------------------------------
 This script uses CLRS library functions to compute the MST
-for a small weighted network using Weighted Test Data.
+for a small weighted network using Weighted_Test_Data.csv.
 
 Library components used:
 - AdjacencyListGraph from clrsPython/UtilityFunctions/adjacency_list_graph.py
 - mst_kruskal from clrsPython/Chapter21/mst.py
 
-Algorithm complexity: O(E log V) (Kruskal's algorithm)
+Algorithm complexity: O(E log V) (Kruskal's algorithm), 
+where E is the number of edges and V is the number of vertices.
+
 """
 from __future__ import annotations
 
@@ -20,10 +21,10 @@ from clrsPython.UtilityFunctions.adjacency_list_graph import AdjacencyListGraph
 from clrsPython.Chapter21.mst import kruskal
 
 from task4.data_api import (
-    _norm,               # Normalize station names
-    init_index,          # BUILD the global index (loads CSV)
-    get_all_stations,    # -> list[(id:int, name:str)]
-    get_edge_info        # -> (time_minutes:int, line:str|None) or None
+    _norm,               
+    init_index,          
+    get_all_stations,    
+    get_edge_info        
 )
 
 def build_graph_from_index() -> tuple[AdjacencyListGraph, dict[int, str]]:
@@ -37,7 +38,7 @@ def build_graph_from_index() -> tuple[AdjacencyListGraph, dict[int, str]]:
     init_index()
 
     # Station listing: [(id, name), ...]
-    stations = get_all_stations()   # e.g. [(0, 'Victoria'), (1, 'Oxford Circus'), ...]
+    stations = get_all_stations()   
     if not stations:
         # No stations loaded; return an empty graph
         return AdjacencyListGraph(card_V=0, directed=False, weighted=True), {}
@@ -67,7 +68,7 @@ def build_graph_from_index() -> tuple[AdjacencyListGraph, dict[int, str]]:
     return G, id_to_name
 
 
-def run_mst_demo():
+def run_mst_demo() -> None:
     # Build CLRS graph directly from Task 1 data
     G, id_to_name = build_graph_from_index()
 
@@ -79,13 +80,13 @@ def run_mst_demo():
 
     # For undirected graphs, get_edge_list() yields each edge once (u < v)
     for (u, v) in mst_graph.get_edge_list():
-        e = mst_graph.find_edge(u, v)  # Edge object
-        w = e.get_weight()
-        total_weight += w
+        edge = mst_graph.find_edge(u, v)  
+        weight = edge.get_weight()
+        total_weight += weight
         # Use _norm to normalize station names for consistent display
         station_u = _norm(id_to_name.get(u, str(u)))
         station_v = _norm(id_to_name.get(v, str(v)))
-        print(f"  {station_u} — {station_v}  (weight = {w})")
+        print(f"  {station_u} — {station_v}  (weight = {weight})")
 
     print(f"\nTotal MST weight = {total_weight}")
     
