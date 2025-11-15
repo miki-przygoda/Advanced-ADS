@@ -50,7 +50,12 @@ Please enter 1 or 2: """))
                     #Has a 40% chance of creating a linked station if not by halfway will create overlapping line
                     if (not interlinked and i == len(stations) // 2) or random.random() < 0.4:
                         #Picks a random line and station to connect to
-                        other_line = random.choice([x for x in lines if x != line_name])
+                        possible_lines = [x for x in lines if x != line_name]
+                        if not possible_lines:
+                            duration = random.randint(2, 6)
+                            writer.writerow([line_name, stations[i], stations[i + 1], duration])
+                            continue
+                        other_line = random.choice(possible_lines)
                         other_station = random.choice(network[other_line])
                         #Connects interchange stations on a line
                         duration_1 = random.randint(2, 6)
