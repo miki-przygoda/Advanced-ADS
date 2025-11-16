@@ -131,14 +131,23 @@ G = AdjacencyListGraph(len(stations), weighted=True)
 added_edges = set()
 
 #Insert edges of both directions into the graph
+min_edges = {}
+
 for u, v, w in edges:
     u_idx = vertex_to_index[u]
     v_idx = vertex_to_index[v]
-    edge_key = frozenset([u_idx, v_idx])
-    if edge_key not in added_edges:
-        G.insert_edge(u_idx, v_idx, w)
-        G.insert_edge(v_idx, u_idx, w)
-        added_edges.add(edge_key)
+
+    # normalize key (undirected edge)
+    key = tuple(sorted((u_idx, v_idx)))
+
+    # keep the smaller weight if duplicates exist
+    if key not in min_edges or w < min_edges[key]:
+        min_edges[key] = w
+
+# insert edges into graph (undirected)
+for (u_idx, v_idx), w in min_edges.items():
+    G.insert_edge(u_idx, v_idx, w)
+    G.insert_edge(v_idx, u_idx, w)
 
 #Convert user input to indices for Dijkstra
 source_idx = vertex_to_index[source]
